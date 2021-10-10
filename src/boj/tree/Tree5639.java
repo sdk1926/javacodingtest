@@ -1,8 +1,10 @@
 package boj.tree;
 
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-public class Main {
+public class Tree5639 {
+    public static StringBuilder sb = new StringBuilder();
     Node head = null;
     public class Node{
         Node left;
@@ -67,50 +69,27 @@ public class Main {
         }
         return null;
     }
-    public void after(int size){
-        ArrayList<Integer> visit = new ArrayList<Integer>();
-        ArrayList<Node> parentBranch = new ArrayList<Node>();
-        Node endLeft;
-        Node root = this.head;
-        Node copyRoot = this.head;
-        Node rightFirst = this.head.right;
-        endLeft = this.head;
 
-        while (endLeft.left != null){
-            copyRoot = endLeft;
-            endLeft = endLeft.left;
-            parentBranch.add(copyRoot);
+
+    public void postOrder(Node node){
+        if (node.left != null){
+            postOrder(node.left);
         }
-        while (true){
-            copyRoot = (parentBranch.remove(parentBranch.size()-1));
-            visit.add(copyRoot.left.value);
-            if (copyRoot.right.value != rightFirst.value){
-                visit.add(copyRoot.right.value);
-            }
-            if (copyRoot.right.value == rightFirst.value){
-                break;
-            }
+        if (node.right != null) {
+            postOrder(node.right);
         }
-
-
-        System.out.println(visit);
-
+        System.out.println(node.value);
     }
-    public static void main(String[] args) {
-        Main mytree = new Main();
-        System.out.println(mytree.insertNode(50));
-        System.out.println(mytree.insertNode(30));
-        System.out.println(mytree.insertNode(24));
-        System.out.println(mytree.insertNode(5));
-        System.out.println(mytree.insertNode(28));
-        System.out.println(mytree.insertNode(45));
-        System.out.println(mytree.insertNode(98));
-        System.out.println(mytree.insertNode(52));
-        System.out.println(mytree.insertNode(60));
-//        System.out.println(mytree.head.value);
-//        System.out.println(mytree.head.left.value);
-//        System.out.println(mytree.head.right.value);
-        mytree.after(10);
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Tree5639 mytree = new Tree5639();
+        mytree.insertNode(Integer.parseInt(br.readLine()));
+        String s = "";
+        while ((s = br.readLine()) != null && s.length() != 0) {
+            mytree.insertNode(Integer.parseInt(s));
+        }
+        mytree.postOrder(mytree.head);
     }
 }
 
