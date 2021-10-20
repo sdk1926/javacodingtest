@@ -20,6 +20,7 @@ public class Main {
         Collections.reverse(array);
         for (int i:array){
             String sv = Integer.toString(i);
+
             sb.append(sv);
         }
         System.out.println(sb);
