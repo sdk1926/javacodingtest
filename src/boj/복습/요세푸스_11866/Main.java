@@ -1,4 +1,4 @@
-package boj.복습.프린터큐1966;
+package boj.복습.요세푸스_11866;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -9,3 +9,4 @@ public class Main {
 
     }
 }
+
